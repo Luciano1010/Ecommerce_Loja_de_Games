@@ -84,14 +84,18 @@ namespace Ecommerce_loja_de_Games.Service.Implements
         }
 
         // metodo de busca por nome ou console
-        public async Task<IEnumerable<Produto>> GetByConsole(string console, string nome)
+        public async Task<IEnumerable<Produto>> GetByConsole(string nome, string console)
         {
-            var Produto = await _context.Produtos.
-                      Include(p => p.Categoria).
-                      Where(p => p.Nome.Contains(nome) || p.Console.Contains(console)).
-                      ToListAsync();
+            
+            {
+                var Produto = await _context.Produtos.
+                          Include(p => p.Categoria).
+                          Where(p => p.Nome.Contains(nome) || p.Console.Contains(console)).
+                          ToListAsync();
+                return Produto;
+            }
+          
 
-            return Produto;
         }
 
         public async  Task<Produto?> Update(Produto Produtos)

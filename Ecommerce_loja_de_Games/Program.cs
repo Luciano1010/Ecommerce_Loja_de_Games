@@ -1,12 +1,17 @@
 
 using Ecommerce_loja_de_Games.Data;
 using Ecommerce_loja_de_Games.Model;
+using Ecommerce_loja_de_Games.Model.Security;
+using Ecommerce_loja_de_Games.Model.Security.Implements;
 using Ecommerce_loja_de_Games.Service;
 using Ecommerce_loja_de_Games.Service.Implements;
 using Ecommerce_loja_de_Games.Validator;
 using FluentValidation;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
 using System;
+using System.Text;
 
 namespace Ecommerce_loja_de_Games
 {
@@ -22,6 +27,7 @@ namespace Ecommerce_loja_de_Games
               .AddNewtonsoftJson(options =>
               {
                   options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore; // evita ficar no loop infinito
+                  options.SerializerSettings.NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore;
               }); // ele fornece todos os recursos para criação das classes controladoras
 
 
@@ -36,10 +42,33 @@ namespace Ecommerce_loja_de_Games
 
             // registrar  a Validação das Entidades
             builder.Services.AddTransient<IValidator<Produto>, ProdutosValidator>(); // transiente ele guarda informações somente quando aplicação estiver funcionando
-            builder.Services.AddTransient<IValidator<Categoria>, CategoriaValidator>(); // 
+            builder.Services.AddTransient<IValidator<Categoria>, CategoriaValidator>();
+            builder.Services.AddTransient<IValidator<User>, UserValidator>();
             // registrar as classes de serviço (service)
             builder.Services.AddScoped<IProdutoService, ProdutosService>(); // scoped ele guarda mesmo que aplicação fecha
             builder.Services.AddScoped<ICategoriaService, CategoriaService>();
+            builder.Services.AddScoped<IUserService, UserService>();
+            builder.Services.AddScoped<IAuthServicecs, AuthService>();
+
+
+            builder.Services.AddAuthentication(options =>
+            {
+                options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+            }).AddJwtBearer(options =>
+            {
+                var key = Encoding.UTF8.GetBytes(Settings.Secret);
+                options.SaveToken = true;
+                options.TokenValidationParameters = new TokenValidationParameters
+                {
+                    ValidateIssuer = false,
+                    ValidateAudience = false,
+                    ValidateLifetime = true,
+                    ValidateIssuerSigningKey = true,
+                    IssuerSigningKey = new SymmetricSecurityKey(key)
+
+                };
+            });
 
 
 
@@ -79,6 +108,9 @@ namespace Ecommerce_loja_de_Games
             }
 
             app.UseCors("Mypolicy");// ele inicializa o CORS
+           
+            app.UseAuthentication();
+
             app.UseAuthorization();
 
 

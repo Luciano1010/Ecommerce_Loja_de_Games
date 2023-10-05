@@ -3,12 +3,13 @@ using Ecommerce_loja_de_Games.Service;
 using Ecommerce_loja_de_Games.Service.Implements;
 using Ecommerce_loja_de_Games.Validator;
 using FluentValidation;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Ecommerce_loja_de_Games.Controller
 {
 
-
+    [Authorize]
     [Route("~/produtos")]
 
     [ApiController]
@@ -126,4 +127,5 @@ namespace Ecommerce_loja_de_Games.Controller
         }
 
     }
+    
 }

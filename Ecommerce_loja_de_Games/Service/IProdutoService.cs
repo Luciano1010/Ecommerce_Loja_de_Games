@@ -16,6 +16,8 @@ namespace Ecommerce_loja_de_Games.Service
 
         Task<IEnumerable<Produto>> GetByConsole(string nome, string console);
 
+        
+
         Task<Produto?> Create(Produto produto); // metodo criar nova Produtos
         Task<Produto?> Update(Produto Produtos); // metodo de atuaizar
       

@@ -22,14 +22,14 @@ namespace Ecommerce_loja_de_Games.Validator
                     .MinimumLength(2)
                     .MaximumLength(30);
 
-            RuleFor(dl => dl.DataLancamento) // verificar
+            RuleFor(dl => dl.DataLancamento) 
                     .NotEmpty();
 
 
             RuleFor(p => p.Preco)
                 .NotNull()
                 .GreaterThan(0)
-                .PrecisionScale(20, 2, false); ;
+                .PrecisionScale(20, 2, false); 
 
 
 

@@ -50,7 +50,7 @@ namespace Ecommerce_loja_de_Games.Model
 
 
         public virtual Categoria? Categoria { get; set; } // chave estrangeira vem da tabela categoria.
-
+        public virtual User? Usuario { get; set; } // chave
     }
 
 }

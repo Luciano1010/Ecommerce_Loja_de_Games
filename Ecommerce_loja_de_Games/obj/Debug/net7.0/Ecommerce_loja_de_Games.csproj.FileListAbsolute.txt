@@ -79,3 +79,5 @@ C:\Users\User\Desktop\Área de Trabalho\Ecommerce_loja_de_Games\Ecommerce_loja_d
 C:\Users\User\Desktop\Área de Trabalho\Ecommerce_loja_de_Games\Ecommerce_loja_de_Games\obj\Debug\net7.0\Ecommerce_loja_de_Games.pdb
 C:\Users\User\Desktop\Área de Trabalho\Ecommerce_loja_de_Games\Ecommerce_loja_de_Games\obj\Debug\net7.0\Ecommerce_loja_de_Games.genruntimeconfig.cache
 C:\Users\User\Desktop\Área de Trabalho\Ecommerce_loja_de_Games\Ecommerce_loja_de_Games\obj\Debug\net7.0\ref\Ecommerce_loja_de_Games.dll
+C:\Users\User\Desktop\Área de Trabalho\Ecommerce_loja_de_Games\Ecommerce_loja_de_Games\bin\Debug\net7.0\BCrypt.Net-Core.dll
+C:\Users\User\Desktop\Área de Trabalho\Ecommerce_loja_de_Games\Ecommerce_loja_de_Games\bin\Debug\net7.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
