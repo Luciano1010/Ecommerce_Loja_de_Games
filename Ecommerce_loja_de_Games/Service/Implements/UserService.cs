@@ -16,16 +16,16 @@ namespace Ecommerce_loja_de_Games.Service.Implements
         public async Task<IEnumerable<User>> GetAll()
         {
             return await _context.Users
-               .Include(u => u.Produto)
                .ToListAsync();
+              
         }
         public async Task<User?> GetById(long id)
         {
             try
             {
                 var Usuario = await _context.Users
-                    .Include(u => u.Produto)
                     .FirstAsync(i => i.Id == id);
+                   
 
                 Usuario.Senha = ""; // no fronte pra atualizar a senha
                 return Usuario;
@@ -42,9 +42,9 @@ namespace Ecommerce_loja_de_Games.Service.Implements
             try
             {
                 var Buscausuario = await _context.Users
-                    .Include(u => u.Produto)
                     .Where(u => u.Usuario == usuario)
                     .FirstOrDefaultAsync();
+                  
 
                 return Buscausuario;
             }

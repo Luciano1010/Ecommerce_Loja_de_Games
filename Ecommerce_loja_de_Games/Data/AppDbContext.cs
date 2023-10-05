@@ -21,11 +21,7 @@ namespace Ecommerce_loja_de_Games.Data
                 .HasForeignKey("CategoriaId")
                 .OnDelete(DeleteBehavior.Cascade);
             
-            _ = modelBuilder.Entity<Produto>() 
-                .HasOne(_ => _.Usuario) 
-                .WithMany(u => u.Produto) 
-                .HasForeignKey("UsuarioId")
-                .OnDelete(DeleteBehavior.Cascade);
+            
 
         }
 

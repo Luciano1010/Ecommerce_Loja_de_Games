@@ -10,16 +10,7 @@ namespace Ecommerce_loja_de_Games.Validator
             RuleFor(u => u.Nome)
                     .NotEmpty()
                     .MinimumLength(2)
-                    .MaximumLength(30);
-            
-            
-            RuleFor(u => u.Senha)
-                .NotEmpty()
-                .MinimumLength(8); 
-
-
-            RuleFor(u => u.Foto)
-                .MaximumLength(5000);
+                    .MaximumLength(255);
 
 
             RuleFor(u => u.Usuario)
@@ -27,7 +18,20 @@ namespace Ecommerce_loja_de_Games.Validator
              .MaximumLength(255)
              .EmailAddress();
 
-           
+            RuleFor(u => u.Senha)
+                .NotEmpty()
+                .MinimumLength(8)
+                .MaximumLength(255);
+
+
+            RuleFor(u => u.Foto)
+                .MaximumLength(5000);
+
+
+
+           // RuleFor(u => u.) // data de nascimento
+             //   .LessThanOrEqualTo(u => DateTime.Today.AddYears(-18));
+               
 
 
 
